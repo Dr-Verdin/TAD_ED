@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define  ERRO -32000
 #define  MAX_PILHA 1000
 
 typedef struct pilha_ {
@@ -89,16 +88,10 @@ void pilha_imprimir(PILHA *pilha){
 }
 void pilha_inverter(PILHA *pilha){
     if(pilha != NULL){
-        PILHA *aux = pilha_criar(aux);
-
-        while(!pilha_vazia(pilha)){
-            pilha_push(&aux, pilha_pop(pilha));
+        for(int i = 0; i < pilha->tam / 2; i++){
+            ITEM *temp = pilha->itens[i];
+            pilha->itens[i] = pilha->itens[pilha->tam - i - 1];
+            pilha->itens[pilha->tam - i - 1] = temp;
         }
-
-        while(!pilha_vazia(aux)){
-            pilha_push(pilha, pilha_pop(&aux));
-        }
-
-        pilha_apagar(&aux);
     }
 }

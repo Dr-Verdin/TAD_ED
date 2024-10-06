@@ -1,6 +1,5 @@
 #ifndef PILHA_H
     #define PILHA_H
-    #define  ERRO -32000
     #define  MAX_PILHA 1000
 
     #include "item.h"
