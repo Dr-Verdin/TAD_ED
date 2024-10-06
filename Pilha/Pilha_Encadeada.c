@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define  MAX_PILHA 1000
+#define  MAX_PILHA 100
 
 typedef struct node_ {
     ITEM *item;
@@ -66,7 +66,7 @@ ITEM *pilha_pop(PILHA *pilha){
 }
 
 void pilha_apagar(PILHA **pilha){
-    if(pilha != NULL && !pilha_vazia(pilha)){
+    if(pilha != NULL){
         NODE *temp;
 
         while((*pilha)->topo != NULL){

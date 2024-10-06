@@ -6,7 +6,7 @@
 #include "item.h"
 
 typedef struct fila_ {
-    ITEM *item[MAX_FILA];
+    ITEM *itens[MAX_FILA];
     int inicio;
     int fim;
     int tam;
@@ -37,7 +37,7 @@ bool fila_vazia(FILA *fila){
 
 bool fila_enqueue(FILA *fila, ITEM *item){
     if(fila != NULL && !fila_cheia(fila)){ 
-        fila->item[fila->tam] = item;
+        fila->itens[fila->tam] = item;
         fila->fim = (fila->fim + 1) % MAX_FILA; // circular
         fila->tam++;
 
@@ -47,8 +47,8 @@ bool fila_enqueue(FILA *fila, ITEM *item){
 }
 ITEM *fila_dequeue(FILA *fila){
     if(fila != NULL && !fila_vazia(fila)){
-        ITEM *item = fila->item[fila->inicio]; 
-        fila->item[fila->inicio] = NULL;
+        ITEM *item = fila->itens[fila->inicio]; 
+        fila->itens[fila->inicio] = NULL;
         fila->inicio = (fila->inicio + 1) % MAX_FILA; // circular
         fila->tam--;
 
@@ -66,7 +66,7 @@ void fila_apagar(FILA **fila){
 void fila_imprimir(FILA *fila){
     if(fila != NULL){
         for(int i = 0; i < fila->tam; i++){
-            printf("%d ", item_get_chave(fila->item[i]));
+            printf("%d ", item_get_chave(fila->itens[i]));
         }
         printf("\n");
     }
@@ -79,7 +79,7 @@ int fila_tamanho(FILA *fila){
 }
 ITEM *fila_frente(FILA *fila){
     if(fila != NULL &&!fila_vazia(fila)){
-        return fila->item[fila->inicio];
+        return fila->itens[fila->inicio];
     }
     return NULL;
 }
