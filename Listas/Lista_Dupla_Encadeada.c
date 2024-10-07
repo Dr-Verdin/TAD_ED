@@ -8,6 +8,7 @@
 typedef struct node_ {
     ITEM *item;
     struct node_ *proximo;
+    struct node_ *anterior;
 } NODE;
 
 typedef struct lista_ {
@@ -53,11 +54,12 @@ bool lista_inserir_ord(LISTA *lista, NODE *newnode, ITEM *item){
         atual = atual->proximo;
     }
 
+    newnode->proximo = atual;
+    newnode->anterior = anterior;
+
     if(anterior == NULL){
-        newnode->proximo = atual;
         lista->inicio = newnode;
     } else {
-        newnode->proximo = atual;
         anterior->proximo = newnode;
     }
 
@@ -77,6 +79,7 @@ bool lista_inserir(LISTA *lista, ITEM *item){
 
         newnode->item = item;
         newnode->proximo = NULL;
+        newnode->anterior = NULL;
 
         if(lista->tam == 0){
             lista->inicio = lista->fim = newnode;
@@ -84,6 +87,7 @@ bool lista_inserir(LISTA *lista, ITEM *item){
             return lista_inserir_ord(lista, newnode, item);
         } else {
             lista->fim->proximo = newnode;
+            newnode->anterior = lista->fim;
             lista->fim = newnode;
         }
 
@@ -107,22 +111,22 @@ ITEM *lista_buscar(LISTA *lista, int chave){
 ITEM *lista_remover(LISTA *lista, int chave){
     if(lista!= NULL &&!lista_vazia(lista)){
         NODE *atual = lista->inicio;
-        NODE *anterior = NULL;
 
         while(atual!= NULL && item_get_chave(atual->item)!= chave){
-            anterior = atual;
             atual = atual->proximo;
         }
 
         if(atual!= NULL){
-            if(anterior == NULL){
-                lista->inicio = atual->proximo;
+            if(atual->anterior != NULL){
+                atual->anterior->proximo = atual->anterior;
             } else {
-                anterior->proximo = atual->proximo;
+                lista->inicio = atual->proximo;
             }
 
-            if(atual == lista->fim){
-                lista->fim = anterior;
+            if (atual->proximo != NULL) {
+                atual->proximo->anterior = atual->anterior;
+            } else {
+                lista->fim = atual->anterior; // Remoção da cauda
             }
 
             ITEM *item_rm = atual->item;
