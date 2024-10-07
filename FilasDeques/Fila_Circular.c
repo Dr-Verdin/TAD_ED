@@ -83,3 +83,13 @@ ITEM *fila_frente(FILA *fila){
     }
     return NULL;
 }
+
+void fila_inverter(FILA *fila){
+    if(fila != NULL){
+        for(int i = 0; i < fila->tam / 2; i++){
+            ITEM *temp = fila->itens[i];
+            fila->itens[i] = fila->itens[fila->tam - i - 1];
+            fila->itens[fila->tam - i - 1] = temp;
+        }
+    }
+}

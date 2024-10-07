@@ -114,3 +114,13 @@ ITEM *deque_final(DEQUE *deque){
     }
     return NULL;
 }
+
+void deque_inverter(DEQUE *deque){
+    if(deque != NULL){
+        for(int i = 0; i < deque->tam / 2; i++){
+            ITEM *temp = deque->itens[i];
+            deque->itens[i] = deque->itens[deque->tam - i - 1];
+            deque->itens[deque->tam - i - 1] = temp;
+        }
+    }
+}

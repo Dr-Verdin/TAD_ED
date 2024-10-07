@@ -148,9 +148,8 @@ int lista_tamanho(LISTA *lista){
 void lista_imprimir(LISTA *lista){
     if(lista != NULL){
         for(int i = 0; i < lista->tam; i++){
-            printf("%d ", lista->itens[i]);
+            printf("%d\n", lista->itens[i]);
         }
-        printf("\n");
     }
 }
 void lista_apagar(LISTA **lista){
@@ -171,6 +170,17 @@ void lista_alterar_item(LISTA *lista, int chave, ITEM *newitem){
         lista->itens[chave] = newitem;
     }
 }
+
+void lista_inverter(LISTA *lista){
+    if(lista != NULL){
+        for(int i = 0; i < lista->tam / 2; i++){
+            ITEM *temp = lista->itens[i];
+            lista->itens[i] = lista->itens[lista->tam - i - 1];
+            lista->itens[lista->tam - i - 1] = temp;
+        }
+    }
+}
+
 /*LISTA *lista_concatenar(LISTA *lista1, LISTA *lista2);{
     if(lista1 != NULL  && lista2 != NULL){
         if(lista->ordenada){

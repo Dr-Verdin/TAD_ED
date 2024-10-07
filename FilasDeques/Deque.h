@@ -18,4 +18,5 @@
     int deque_tamanho(DEQUE *deque);
     ITEM *deque_frente(DEQUE *deque);
     ITEM *deque_final(DEQUE *deque);
+    void deque_inverter(DEQUE *deque);
 #endif

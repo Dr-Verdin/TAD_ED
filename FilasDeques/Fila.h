@@ -15,7 +15,7 @@
     void fila_imprimir(FILA *fila);
     int fila_tamanho(FILA *fila);
     ITEM *fila_frente(FILA *fila);
-    // void fila_inverter(FILA *fila);
+    void fila_inverter(FILA *fila);
     // void fila_concatenar(FILA *fila1, FILA *fila2);
     // FILA *fila_filtrar(FILA *fila, int chave);
 
