@@ -26,6 +26,7 @@ PILHA *pilha_criar(){
     }
     return NULL;
 }
+
 bool pilha_cheia(PILHA *pilha){
     if(pilha!= NULL){
         return pilha->tam == MAX_PILHA;

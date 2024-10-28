@@ -50,6 +50,8 @@ bool deque_enqueue_fim(DEQUE *deque, ITEM *item){
 
             if(deque->inicio == NULL){
                 deque->inicio = new;
+            } else {
+                deque->fim->proximo = new;
             }
 
             deque->fim = new;

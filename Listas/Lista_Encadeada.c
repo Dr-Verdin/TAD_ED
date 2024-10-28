@@ -65,7 +65,6 @@ bool lista_inserir_ord(LISTA *lista, NODE *newnode, ITEM *item){
         lista->fim = newnode;
     }
 
-    lista->tam++;
     return true;
 }
 
@@ -104,17 +103,18 @@ ITEM *lista_buscar(LISTA *lista, int chave){
     }
     return NULL;
 }
+
 ITEM *lista_remover(LISTA *lista, int chave){
-    if(lista!= NULL &&!lista_vazia(lista)){
+    if(lista != NULL && !lista_vazia(lista)){
         NODE *atual = lista->inicio;
         NODE *anterior = NULL;
 
-        while(atual!= NULL && item_get_chave(atual->item)!= chave){
+        while(atual != NULL && item_get_chave(atual->item)!= chave){
             anterior = atual;
             atual = atual->proximo;
         }
 
-        if(atual!= NULL){
+        if(atual != NULL){
             if(anterior == NULL){
                 lista->inicio = atual->proximo;
             } else {
