@@ -16,5 +16,5 @@
     ITEM *abb_busca(ABB *T, int chave); 
     bool abb_vazia(ABB *T); 
     bool abb_perfeitamente_balanceada(ABB *T); /*Essa função devolve 0 se a Árvore é perfeitamente balanceada e 1 caso contrário*/
-    // x
+    
 #endif

@@ -1,6 +1,8 @@
 #include "item.h"
+#include "Arv_Bin.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define FILHO_ESQ 0
 #define FILHO_DIR 1
@@ -30,7 +32,7 @@ AB *ab_criar(void){
 }
 
 
-void ab_inserir_no(NO *raiz, NO *node, int lado, int chave_pai){
+void inserir_no(NO *raiz, NO *node, int lado, int chave_pai){
     if(raiz != NULL){
         ab_inserir_no(raiz->esq, node, lado, chave_pai);
         ab_inserir_no(raiz->dir, node, lado, chave_pai);
@@ -46,14 +48,29 @@ void ab_inserir_no(NO *raiz, NO *node, int lado, int chave_pai){
     return;
 }
 
+NO *cria_no(ITEM *item){
+    NO *newNode = (NO*)malloc(sizeof(NO));
+
+    if(newNode != NULL){
+        newNode->item = item;
+        newNode->esq = NULL;
+        newNode->dir = NULL;
+
+        return newNode;
+    }
+    return NULL;
+}
+
 void ab_inserir(AB *ab, ITEM *item, int lado, int chave_pai){
-    if(ab->raiz == NULL)
-        return((ab->raiz = ab_cria_no(item)) != NULL);
-    else {
-        NO *newNode = ab_cria_no(item);
+    if(ab->raiz == NULL){
+        ab->profundidade++;
+        return((ab->raiz = cria_no(item)) != NULL);
+    } else {
+        NO *newNode = cria_no(item);
         
         if(newNode != NULL){
-            ab_inserir_no(ab->raiz, newNode, lado, chave_pai);
+            inserir_no(ab->raiz, newNode, lado, chave_pai);
+            ab->profundidade++;
             return(true);
         }
 

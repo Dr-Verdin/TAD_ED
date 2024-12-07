@@ -1,3 +1,5 @@
+// Refazer depois
+
 #include  "item.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,7 +50,6 @@ NO *abb_inserir_no (NO *raiz, NO *newNode){
         raiz->esq = abb_inserir_no(raiz->esq, newNode);
     else if(item_get_chave(newNode->item) > item_get_chave(raiz->item))
         raiz->dir = abb_inserir_no(raiz->dir, newNode);
-    return true;
 }
 
 bool abb_inserir (ABB *T, ITEM *item){
@@ -119,7 +120,7 @@ bool abb_remover_aux(NO **raiz, int chave){
                 *raiz = (*raiz)->dir;
             else 
                *raiz = (*raiz)->esq;
-            item_apagar(p->item);
+            item_apagar(&p->item);
             free(p);
             p = NULL;
         } else 
@@ -206,6 +207,7 @@ bool abb_perfeitamente_balanceada(ABB *T){
     if(T != NULL){
         bool balanciado = true;
         altura_balanceada(T->raiz, &balanciado);
+        return balanciado;
     }
 
     return false;
