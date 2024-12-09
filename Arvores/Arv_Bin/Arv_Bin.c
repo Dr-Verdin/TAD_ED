@@ -89,10 +89,10 @@ void apagar_arvore(NO **raiz){
     }
 }
 
-void ab_apagar(AB **T){
-    apagar_arvore(&(*T)->raiz);
-    free(*T);
-    *T = NULL;
+void ab_apagar(AB **ab){
+    apagar_arvore(&(*ab)->raiz);
+    free(*ab);
+    *ab = NULL;
 }
 
 void ab_imprimir (AB *T){ // imprimir em preOrdem, tentar imprimir por níveis

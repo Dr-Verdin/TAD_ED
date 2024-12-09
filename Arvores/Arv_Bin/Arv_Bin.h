@@ -11,7 +11,7 @@
   AB *ab_criar(void);
   bool ab_inserir (AB *T, ITEM *item, int lado, int chave);
   void ab_imprimir (AB *T);
-  void ab_apagar_arvore(AB **T);
+  void ab_apagar(AB **T);
   
   
   int ab_estritamente_binaria (AB *T); /*Essa função devolve 0 se a Árvore é estritamente binária e 1 caso contrário*/

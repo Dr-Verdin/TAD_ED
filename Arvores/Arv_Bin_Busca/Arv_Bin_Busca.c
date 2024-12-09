@@ -95,7 +95,7 @@ void troca_max_esq(NO *troca, NO *raiz, NO *anterior){ // Troca com o máximo el
     if(raiz == anterior)
         anterior->esq = troca->esq;
     else 
-        anterior->dir = troca->dir;
+        anterior->dir = troca->esq;
 
     raiz->item = troca->item;
     free(troca);
@@ -150,4 +150,30 @@ bool abb_remover(ABB *abb, int chave){
     if(abb != NULL) 
         return (abb_remover_aux(&abb->raiz, chave));
     return false;
+}
+
+void apagar_arvore(NO **raiz){
+    if(*raiz != NULL){
+        ab_apagar_arvore(&(*raiz)->esq);
+        ab_apagar_arvore(&(*raiz)->dir);
+
+        item_apagar(&(*raiz)->item);
+        free(*raiz);
+        *raiz = NULL;
+    }
+}
+
+void abb_apagar (ABB **abb){
+    apagar_arvore(&(*abb)->raiz);
+    free(*abb);
+    *abb = NULL;
+}
+
+bool abb_vazia(ABB *T){
+    if (T != NULL){
+        if(T->raiz != NULL && T->profundidade != -1)
+            return false;
+        else if (T->raiz == NULL && T->profundidade == -1)
+            return true;
+    }
 }
